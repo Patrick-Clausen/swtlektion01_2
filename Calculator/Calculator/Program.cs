@@ -12,6 +12,7 @@ namespace Calculator
             Console.WriteLine(c1.Subtract(2,1));
             Console.WriteLine(c1.Multiply(5,10));
             Console.WriteLine(c1.Power(2, 16));
+            Console.WriteLine(c1.Add(3,5));
         }
     }
 }
