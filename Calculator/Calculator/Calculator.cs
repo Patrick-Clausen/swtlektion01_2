@@ -30,5 +30,40 @@ namespace Calculator
         {
             return Math.Pow(x, exp);
         }
+
+        public double Divide(double dividend, double divisor)
+        {
+            return dividend / divisor;
+        }
+
+        // OVERLOADS
+        public double Add(double a)
+        {
+            Accumulator = a + Accumulator;
+            return a + Accumulator;
+        }
+
+        public double Subtract(double a)
+        {
+            Accumulator = a + Accumulator;
+            return a - Accumulator;
+        }
+
+        public double Multiply(double a)
+        {
+            Accumulator = a * Accumulator;
+            return a * Accumulator;
+        }
+        public double Divide(double divisor)
+        {
+            Accumulator = Accumulator / divisor;
+            return Accumulator / divisor;
+        }
+        public double Power(double exp)
+        {
+            Accumulator = Math.Pow(Accumulator, exp);
+            return Math.Pow(Accumulator, exp);
+        }
+
     }
 }
