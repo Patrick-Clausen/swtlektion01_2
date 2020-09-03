@@ -50,29 +50,29 @@ namespace Calculator
         public double Add(double a)
         {
             Accumulator = a + Accumulator;
-            return a + Accumulator;
+            return Accumulator;
         }
 
         public double Subtract(double a)
         {
             Accumulator = a + Accumulator;
-            return a - Accumulator;
+            return Accumulator;
         }
 
         public double Multiply(double a)
         {
             Accumulator = a * Accumulator;
-            return a * Accumulator;
+            return Accumulator;
         }
         public double Divide(double divisor)
         {
             Accumulator = Accumulator / divisor;
-            return Accumulator / divisor;
+            return Accumulator;
         }
         public double Power(double exp)
         {
             Accumulator = Math.Pow(Accumulator, exp);
-            return Math.Pow(Accumulator, exp);
+            return Accumulator;
         }
         public double Accumulator { get; private set; }
     }
