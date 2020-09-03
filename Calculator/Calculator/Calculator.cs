@@ -9,7 +9,6 @@ namespace Calculator
     {
         public Calculator()
         {
-            Accumulator = 0;
         }
 
         public double Add(double a, double b)
@@ -75,5 +74,6 @@ namespace Calculator
             return Math.Pow(Accumulator, exp);
         }
         public double Accumulator { get; private set; }
+
     }
 }
