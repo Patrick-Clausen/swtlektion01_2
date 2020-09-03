@@ -96,7 +96,7 @@ namespace Calculator.Unit.Test
             var result = uut.Add(-4);
             Assert.That(result, Is.EqualTo(6));
         }
-    }
+    
 
 
         [TestCase(12,5,7)]
