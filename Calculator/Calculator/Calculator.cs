@@ -93,7 +93,7 @@ namespace Calculator
         {
             if (_accumulatorInitialized)
             {
-                Accumulator = a + Accumulator;
+                Accumulator = Accumulator - a;
                 return Accumulator;
             }
             else

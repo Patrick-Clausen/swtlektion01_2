@@ -132,6 +132,7 @@ namespace Calculator.Unit.Test
         #endregion
 
         #region Power Method
+        /*
         public void Power_x_y(double x, double exp)
         {
             var result = uut.Multiply(a, b);
@@ -149,19 +150,33 @@ namespace Calculator.Unit.Test
             var result = uut.Multiply(a, b);
             Assert.That(result, Is.EqualTo(c));
         }
+        */
         #endregion
 
         #region Overloaded Add Method
-        [Test]
-        public void OverloadedAddDoubleAndAccumulator_ReturnsCorrectNumber(double a)
+        [TestCase(4, 2, 2, 8)]
+        [TestCase(-6, 4, 4, 2)]
+        [TestCase(5, -5, -5, -5)]
+        [TestCase(1.2, 4.2, -2.1, 3.3)]
+        public void OverloadedAddDoubleAndAccumulator_ReturnsCorrectNumber(double a, double acc_1, double acc_2, double b)
         {
-            uut.Add(5, 5);
-            var result = uut.Add(4);
-            Assert.That(result, Is.EqualTo(14));
+            uut.Add(acc_1, acc_2);
+            var result = uut.Add(a);
+            Assert.That(result, Is.EqualTo(b));
         }
         #endregion
 
         #region Overloaded Subtract Method
+        [TestCase(12, 20, 4,4 )]
+        [TestCase(6, 10, 12, -8)]
+        [TestCase(-2, 2, 7, -3)]
+        [TestCase(4.2, 6.6, 3.7, -1.3000000000000007)]
+        public void OverloadedSubtractDoubleAndAccumulator_ReturnsCorrectNumber(double a, double acc_1, double acc_2, double b)
+        {
+            uut.Subtract(acc_1, acc_2);
+            var result = uut.Subtract(a);
+            Assert.That(result, Is.EqualTo(b));
+        }
 
         #endregion
 
