@@ -199,8 +199,15 @@ namespace Calculator.Unit.Test
         #endregion
 
         #region Accumulator
+
         [Test]
-        public void IsAccumulatorInitialized_AddTwoNumbers_TestIfAccumulatorIsInitialized()
+        public void IsAccumulatorInitialized_DoNothing_AccumulatorNotInitialized()
+        {
+            Assert.That(uut.IsAccumulatorInitialized(), Is.EqualTo(false));
+        }
+
+        [Test]
+        public void IsAccumulatorInitialized_AddTwoNumbers_AccumulatorIsInitialized()
         {
             uut.Add(2, 5);
             Assert.That(uut.IsAccumulatorInitialized, Is.EqualTo(true));
@@ -210,6 +217,20 @@ namespace Calculator.Unit.Test
 
         #region Clear
 
+        [Test]
+        public void Clear_Clear_AccumulatorNotInitialized()
+        {
+            uut.Clear();
+            Assert.That(uut.IsAccumulatorInitialized(), Is.EqualTo(false));
+        }
+
+        [Test]
+        public void Clear_AddNumbersAndClear_AccumulatorNotInitialized()
+        {
+            uut.Add(5, 6);
+            uut.Clear();
+            Assert.That(uut.IsAccumulatorInitialized(), Is.EqualTo(false));
+        }
         #endregion 
     }
 }
