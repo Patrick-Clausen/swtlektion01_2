@@ -15,7 +15,7 @@ namespace Calculator.Unit.Test
             uut = new Calculator();
         }
 
-
+        #region Add Method
         [Test]
         public void Add_TwoPositiveNumbers_ReturnPositiveNumber()
         {
@@ -43,7 +43,29 @@ namespace Calculator.Unit.Test
             var result = uut.Add(-5, -7);
             Assert.That(result,Is.EqualTo(-12));
         }
+        #endregion
 
+        #region Subtract Method
+        [TestCase(12, 5, 7)]
+        [TestCase(-5, 7, -12)]
+        [TestCase(-12, -7, -5)]
+        public void Subtract_PositiveAndNegativeNumbers_ReturnIsCorrect(int a, int b, int c)
+        {
+            var result = uut.Subtract(a, b);
+            Assert.That(result, Is.EqualTo(c));
+        }
+
+        [TestCase(12, 5, 7)]
+        [TestCase(-5, 7, -12)]
+        [TestCase(-12, -7, -5)]
+        public void Subtract_PositiveAndNegativeNumbers_AccumulatorIsCorrect(int a, int b, int c)
+        {
+            uut.Subtract(a, b);
+            Assert.That(uut.Accumulator, Is.EqualTo(c));
+        }
+        #endregion
+
+        #region Divide Method
         [Test]
         public void DivideTwoPositiveIntegers_ReturnPositiveNumber()
         {
@@ -81,43 +103,9 @@ namespace Calculator.Unit.Test
             var result = uut.Divide(10, 0);
             Assert.That(result, Is.EqualTo(double.PositiveInfinity));
         }
+        #endregion
 
-        [Test]
-        public void OverloadedAddPositiveIntegerAndAccumulator_ReturnsPositiveNumber()
-        {
-            uut.Add(5, 5);
-            var result = uut.Add(4);
-            Assert.That(result, Is.EqualTo(14));
-        }
-        [Test]
-        public void OverloadedAddNegativeIntegerAndAccumulator_ReturnsCorrectNumber()
-        {
-            uut.Add(5, 5);
-            var result = uut.Add(-4);
-            Assert.That(result, Is.EqualTo(6));
-        }
-    
-
-
-        [TestCase(12,5,7)]
-        [TestCase(-5,7,-12)]
-        [TestCase(-12,-7,-5)]
-        public void Subtract_PositiveAndNegativeNumbers_ReturnIsCorrect(int a, int b, int c)
-        {
-            var result = uut.Subtract(a, b);
-            Assert.That(result, Is.EqualTo(c));
-        }
-
-        [TestCase(12, 5, 7)]
-        [TestCase(-5, 7, -12)]
-        [TestCase(-12, -7, -5)]
-        public void Subtract_PositiveAndNegativeNumbers_AccumulatorIsCorrect(int a, int b, int c)
-        {
-            uut.Subtract(a, b);
-            Assert.That(uut.Accumulator, Is.EqualTo(c));
-        }
-
-
+        #region Multiply Method
         [TestCase(5,10,50)]
         [TestCase(2,8,16)]
         [TestCase(0,1,0)]
@@ -141,8 +129,63 @@ namespace Calculator.Unit.Test
             uut.Multiply(a, b);
             Assert.That(uut.Accumulator, Is.EqualTo(c));
         }
+        #endregion
 
+        #region Power Method
+        public void Power_x_y(double x, double exp)
+        {
+            var result = uut.Multiply(a, b);
+            Assert.That(result, Is.EqualTo(c));
+        }
 
+        public void Power_x_y(double x, double exp)
+        {
+            var result = uut.Multiply(a, b);
+            Assert.That(result, Is.EqualTo(c));
+        }
+
+        public void Power_x_y(double x, double exp)
+        {
+            var result = uut.Multiply(a, b);
+            Assert.That(result, Is.EqualTo(c));
+        }
+        #endregion
+
+        #region Overloaded Add Method
+        [Test]
+        public void OverloadedAddPositiveIntegerAndAccumulator_ReturnsPositiveNumber()
+        {
+            uut.Add(5, 5);
+            var result = uut.Add(4);
+            Assert.That(result, Is.EqualTo(14));
+        }
+
+        [Test]
+        public void OverloadedAddNegativeIntegerAndAccumulator_ReturnsCorrectNumber()
+        {
+            uut.Add(5, 5);
+            var result = uut.Add(-4);
+            Assert.That(result, Is.EqualTo(6));
+        }
+        #endregion
+
+        #region Overloaded Subtract Method
+
+        #endregion
+
+        #region Overloaded Divide Method
+
+        #endregion
+
+        #region Overloaded Multiply
+
+        #endregion
+
+        #region Overloaded Power Method
+
+        #endregion
+
+        #region Accumulator
         [Test]
         public void Add_TwoPositiveNumbers_AccumulatorIsCorrect()
         {
@@ -156,5 +199,10 @@ namespace Calculator.Unit.Test
             uut.Add(-2, -7);
             Assert.That(uut.Accumulator, Is.EqualTo(-9));
         }
+        #endregion
+
+        #region Clear
+
+        #endregion 
     }
 }
