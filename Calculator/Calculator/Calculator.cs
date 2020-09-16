@@ -150,6 +150,12 @@ namespace Calculator
             }
             
         }
+
+        public bool IsAccumulatorInitialized()
+        {
+            return _accumulatorInitialized;
+        }
+
         public double Accumulator { get; private set; }
         private bool _accumulatorInitialized = false;
     }
