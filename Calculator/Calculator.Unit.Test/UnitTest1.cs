@@ -131,23 +131,17 @@ namespace Calculator.Unit.Test
         #endregion
 
         #region Power Method
-        public void Power_x_y(double x, double exp)
+
+        [TestCase(2,4,16)]
+        [TestCase(16,2,256)]
+        [TestCase(0.5,-1,2)]
+        [TestCase(200,0,1)]
+        public void Power_TestWithPositiveNegativeAndZeroExponents_ResultIsCorrect(double x, double exp, double expectedResult)
         {
-            var result = uut.Multiply(a, b);
-            Assert.That(result, Is.EqualTo(c));
+            var result = uut.Power(x, exp);
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
 
-        public void Power_x_y(double x, double exp)
-        {
-            var result = uut.Multiply(a, b);
-            Assert.That(result, Is.EqualTo(c));
-        }
-
-        public void Power_x_y(double x, double exp)
-        {
-            var result = uut.Multiply(a, b);
-            Assert.That(result, Is.EqualTo(c));
-        }
         #endregion
 
         #region Overloaded Add Method
