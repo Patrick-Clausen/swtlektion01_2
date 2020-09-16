@@ -5,6 +5,20 @@ using System.Text;
 
 namespace Calculator
 {
+
+    class AccumulatorNotInitializedException : Exception
+    {
+        public AccumulatorNotInitializedException()
+        {
+
+        }
+
+        public AccumulatorNotInitializedException(string exceptionString)
+            : base(exceptionString)
+        {
+
+        }
+    }
     public class Calculator
     {
         public Calculator()
@@ -14,61 +28,108 @@ namespace Calculator
         public double Add(double a, double b)
         {
             Accumulator = a + b;
+            _accumulatorInitialized = true;
             return Accumulator;
         }
 
         public double Subtract(double a, double b)
         {
             Accumulator = a - b;
+            _accumulatorInitialized = true;
             return Accumulator;
         }
 
         public double Multiply(double a, double b)
         {
             Accumulator = a * b;
+            _accumulatorInitialized = true;
             return Accumulator;
         }
 
         public double Power(double x, double exp)
         {
             Accumulator = Math.Pow(x, exp);
+            _accumulatorInitialized = true;
             return Accumulator;
         }
 
         public void Clear()
         {
             Accumulator = 0;
+            _accumulatorInitialized = false;
         }
 
         public double Divide(double dividend, double divisor)
         {
-            return dividend / divisor;
+            if (divisor != 0)
+            {
+                Accumulator = dividend / divisor;
+                _accumulatorInitialized = true;
+                return Accumulator;
+            }
+            else
+            {
+                throw new DivideByZeroException("Used Divide(dividend,divisor) with divisor==0!");
+            }
+            
         }
 
         // OVERLOADS
         public double Add(double a)
         {
-            Accumulator = a + Accumulator;
-            return Accumulator;
+            if (_accumulatorInitialized)
+            {
+                Accumulator = a + Accumulator;
+                return Accumulator;
+            }
+            else
+            {
+                throw new AccumulatorNotInitializedException("Add(a) used with uninitialized Accumulator");
+            }
+            
         }
 
         public double Subtract(double a)
         {
-            Accumulator = a + Accumulator;
-            return Accumulator;
+            if (_accumulatorInitialized)
+            {
+                Accumulator = a + Accumulator;
+                return Accumulator;
+            }
+            else
+            {
+                throw new AccumulatorNotInitializedException("Subtract(a) used with uninitialized Accumulator");
+            }
+            
         }
 
         public double Multiply(double a)
         {
-            Accumulator = a * Accumulator;
-            return Accumulator;
+            if (_accumulatorInitialized)
+            {
+                Accumulator = a * Accumulator;
+                return Accumulator;
+            }
+            else
+            {
+                throw new AccumulatorNotInitializedException("Multiply(a) used with uninitialized Accumulator");
+            }
+            
         }
         public double Divide(double divisor)
         {
             if (divisor != 0)
             {
-                Accumulator = Accumulator / divisor;
-                return Accumulator;
+                if (_accumulatorInitialized)
+                {
+                    Accumulator = Accumulator / divisor;
+                    return Accumulator;
+                }
+                else
+                {
+                    throw new AccumulatorNotInitializedException("Divide(divisor) used with uninitialized Accumulator");
+                }
+                
             }
             else
             {
@@ -78,10 +139,18 @@ namespace Calculator
         }
         public double Power(double exp)
         {
-            Accumulator = Math.Pow(Accumulator, exp);
-            return Accumulator;
+            if (_accumulatorInitialized)
+            {
+                Accumulator = Math.Pow(Accumulator, exp);
+                return Accumulator;
+            }
+            else
+            {
+                throw new AccumulatorNotInitializedException("Power(exp) used with uninitialized Accumulator");
+            }
+            
         }
         public double Accumulator { get; private set; }
-
+        private bool _accumulatorInitialized = false;
     }
 }
