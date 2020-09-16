@@ -131,11 +131,6 @@ namespace Calculator.Unit.Test
         #endregion
 
         #region Power Method
-        public void Power_x_y(double x, double exp)
-        {
-            var result = uut.Multiply(a, b);
-            Assert.That(result, Is.EqualTo(c));
-        }
 
         [TestCase(2,4,16)]
         [TestCase(16,2,256)]
@@ -178,10 +173,38 @@ namespace Calculator.Unit.Test
 
         #region Overloaded Divide Method
 
+        [TestCase(2, 10, 5, 1)]
+        [TestCase(-60, 6, 1, -0.1)]
+        [TestCase(2, -9, 3, -1.5)]
+        [TestCase(-12, -16.3, -4.8, -0.2829861111111111)]
+        public void OverloadedDivide_DivideTwoDoubles_ResultIsCorrect(double a, double acc1, double acc2, double b)
+        {
+            uut.Divide(acc1, acc2);
+            var result = uut.Divide(a);
+            Assert.That(result, Is.EqualTo(b));
+        }
+
+        [Test]
+        public void OverloadedDivide_DivideByZero_ThrowDivideByZeroException()
+        {
+            uut.Divide(10, 5);
+            Assert.Throws<DivideByZeroException>(delegate { uut.Divide(0); });
+        }
         #endregion
 
         #region Overloaded Multiply
-
+        [TestCase(5, 10, 50, 2500)]
+        [TestCase(2, 8, 16,256)]
+        [TestCase(0, 1, 0,0)]
+        [TestCase(0, 0, 0,0)]
+        [TestCase(6, -78, -4,1872)]
+        [TestCase(-0.6, -54, -43,-1393.2)]
+        public void OverloadedMultiply_DoubleAndAccumulator_ResultIsCorrect(double a, double acc1, double acc2, double b)
+        {
+            uut.Multiply(acc1, acc2);
+            var result = uut.Multiply(a);
+            Assert.That(result, Is.EqualTo(b));
+        }
         #endregion
 
         #region Overloaded Power Method
