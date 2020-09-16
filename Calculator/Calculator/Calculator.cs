@@ -6,7 +6,7 @@ using System.Text;
 namespace Calculator
 {
 
-    class AccumulatorNotInitializedException : Exception
+    public class AccumulatorNotInitializedException : Exception
     {
         public AccumulatorNotInitializedException()
         {
@@ -150,6 +150,12 @@ namespace Calculator
             }
             
         }
+
+        public bool IsAccumulatorInitialized()
+        {
+            return _accumulatorInitialized;
+        }
+
         public double Accumulator { get; private set; }
         private bool _accumulatorInitialized = false;
     }
