@@ -65,8 +65,16 @@ namespace Calculator
         }
         public double Divide(double divisor)
         {
-            Accumulator = Accumulator / divisor;
-            return Accumulator;
+            if (divisor != 0)
+            {
+                Accumulator = Accumulator / divisor;
+                return Accumulator;
+            }
+            else
+            {
+                throw new DivideByZeroException("Used Divide(divisor) with divisor==0!");
+            }
+            
         }
         public double Power(double exp)
         {
