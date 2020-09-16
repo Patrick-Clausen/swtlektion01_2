@@ -153,19 +153,11 @@ namespace Calculator.Unit.Test
 
         #region Overloaded Add Method
         [Test]
-        public void OverloadedAddPositiveIntegerAndAccumulator_ReturnsPositiveNumber()
+        public void OverloadedAddDoubleAndAccumulator_ReturnsCorrectNumber(double a)
         {
             uut.Add(5, 5);
             var result = uut.Add(4);
             Assert.That(result, Is.EqualTo(14));
-        }
-
-        [Test]
-        public void OverloadedAddNegativeIntegerAndAccumulator_ReturnsCorrectNumber()
-        {
-            uut.Add(5, 5);
-            var result = uut.Add(-4);
-            Assert.That(result, Is.EqualTo(6));
         }
         #endregion
 
