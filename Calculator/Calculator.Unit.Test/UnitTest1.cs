@@ -208,27 +208,70 @@ namespace Calculator.Unit.Test
         #endregion
 
         #region Overloaded Power Method
+        [TestCase( 2, 1, 4, 16)]
+        [TestCase( 4, 2, 2, 256)]
+        [TestCase( 2, -1, -1, 2)]
+        [TestCase( 152, 256, 0, 1)]
+        public void PowerOverload_TestWithPositiveNegativeAndZeroExponents_ResultIsCorrect(double acc_x, double acc_exp, double exp, double expectedResult)
+        {
+            uut.Power(acc_x, acc_exp);
+            var result = uut.Power(exp);
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
 
+        [TestCase(2, 1, 4, 16)]
+        [TestCase(4, 2, 2, 256)]
+        [TestCase(2, -1, -1, 2)]
+        [TestCase(152, 256, 0, 1)]
+        public void PowerOverload_TestWithPositiveNegativeAndZeroExponents_AccumulatorIsCorrect(double acc_1, double acc_2, double exp, double expectedAccumulator)
+        {
+            uut.Power(acc_1, acc_2);
+            uut.Power(exp);
+
+            Assert.That(uut.Accumulator,Is.EqualTo(expectedAccumulator));
+        }
+
+
+        [Test]
+        public void PowerOverload_TestWithUninitializedAccumulator_ThrowsException()
+        {
+            Assert.Throws<AccumulatorNotInitializedException>(delegate { uut.Power(45); });
+        }
         #endregion
 
         #region Accumulator
+
         [Test]
-        public void Add_TwoPositiveNumbers_AccumulatorIsCorrect()
+        public void IsAccumulatorInitialized_DoNothing_AccumulatorNotInitialized()
         {
-            uut.Add(2, 5);
-            Assert.That(uut.Accumulator, Is.EqualTo(7));
+            Assert.That(uut.IsAccumulatorInitialized(), Is.EqualTo(false));
         }
 
         [Test]
-        public void Add_TwoNegativeNumbers_AccumulatorIsCorrect()
+        public void IsAccumulatorInitialized_AddTwoNumbers_AccumulatorIsInitialized()
         {
-            uut.Add(-2, -7);
-            Assert.That(uut.Accumulator, Is.EqualTo(-9));
+            uut.Add(2, 5);
+            Assert.That(uut.IsAccumulatorInitialized, Is.EqualTo(true));
         }
+
         #endregion
 
         #region Clear
 
+        [Test]
+        public void Clear_Clear_AccumulatorNotInitialized()
+        {
+            uut.Clear();
+            Assert.That(uut.IsAccumulatorInitialized(), Is.EqualTo(false));
+        }
+
+        [Test]
+        public void Clear_AddNumbersAndClear_AccumulatorNotInitialized()
+        {
+            uut.Add(5, 6);
+            uut.Clear();
+            Assert.That(uut.IsAccumulatorInitialized(), Is.EqualTo(false));
+        }
         #endregion 
     }
 }
