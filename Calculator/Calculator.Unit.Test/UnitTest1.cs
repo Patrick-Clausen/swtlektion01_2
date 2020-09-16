@@ -98,10 +98,9 @@ namespace Calculator.Unit.Test
         }
 
         [Test]
-        public void DivideByZero_IsEqualToInfinity()
+        public void Divide_DivideByZero_ThrowDivideByZeroException()
         {
-            var result = uut.Divide(10, 0);
-            Assert.That(result, Is.EqualTo(double.PositiveInfinity));
+            Assert.Throws<DivideByZeroException>(delegate { uut.Divide(10, 0); });
         }
         #endregion
 

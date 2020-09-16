@@ -6,7 +6,7 @@ using System.Text;
 namespace Calculator
 {
 
-    class AccumulatorNotInitializedException : Exception
+    public class AccumulatorNotInitializedException : Exception
     {
         public AccumulatorNotInitializedException()
         {
