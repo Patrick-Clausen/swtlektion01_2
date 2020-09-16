@@ -155,6 +155,12 @@ namespace Calculator.Unit.Test
             var result = uut.Add(a);
             Assert.That(result, Is.EqualTo(b));
         }
+
+        [Test]
+        public void OverloadedAdd_CallWithUninitializedAccumulator_ThrowsException()
+        {
+            Assert.Throws<AccumulatorNotInitializedException>(delegate { uut.Add(4); });
+        }
         #endregion
 
         #region Overloaded Subtract Method
@@ -167,6 +173,12 @@ namespace Calculator.Unit.Test
             uut.Subtract(acc_1, acc_2);
             var result = uut.Subtract(a);
             Assert.That(result, Is.EqualTo(b));
+        }
+
+        [Test]
+        public void OverloadedSubtract_CallWithUninitializedAccumulator_ThrowsException()
+        {
+            Assert.Throws<AccumulatorNotInitializedException>(delegate { uut.Subtract(4); });
         }
 
         #endregion
@@ -190,6 +202,12 @@ namespace Calculator.Unit.Test
             uut.Divide(10, 5);
             Assert.Throws<DivideByZeroException>(delegate { uut.Divide(0); });
         }
+
+        [Test]
+        public void OverloadedDivide_CallWithUninitializedAccumulator_ThrowsException()
+        {
+            Assert.Throws<AccumulatorNotInitializedException>(delegate { uut.Divide(4); });
+        }
         #endregion
 
         #region Overloaded Multiply
@@ -204,6 +222,12 @@ namespace Calculator.Unit.Test
             uut.Multiply(acc1, acc2);
             var result = uut.Multiply(a);
             Assert.That(result, Is.EqualTo(b));
+        }
+
+        [Test]
+        public void OverloadedMultiply_CallWithUninitializedAccumulator_ThrowsException()
+        {
+            Assert.Throws<AccumulatorNotInitializedException>(delegate { uut.Divide(4); });
         }
         #endregion
 
