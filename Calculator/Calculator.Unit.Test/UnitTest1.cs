@@ -178,13 +178,18 @@ namespace Calculator.Unit.Test
             Assert.That(result, Is.EqualTo(expectedResult));
         }
 
-        /*
-        [TestCase]
-        public void PowerOverload_TestWithPositiveNegativeAndZeroExponents_AccumulatorIsCorrect(double a, double b)
+        [TestCase(2, 1, 4, 16)]
+        [TestCase(4, 2, 2, 256)]
+        [TestCase(2, -1, -1, 2)]
+        [TestCase(152, 256, 0, 1)]
+        public void PowerOverload_TestWithPositiveNegativeAndZeroExponents_AccumulatorIsCorrect(double acc_1, double acc_2, double exp, double expectedAccumulator)
         {
+            uut.Power(acc_1, acc_2);
+            uut.Power(exp);
 
+            Assert.That(uut.Accumulator,Is.EqualTo(expectedAccumulator));
         }
-        */
+
 
         [Test]
         public void PowerOverload_TestWithUninitializedAccumulator_ThrowsException()
@@ -195,18 +200,12 @@ namespace Calculator.Unit.Test
 
         #region Accumulator
         [Test]
-        public void Add_TwoPositiveNumbers_AccumulatorIsCorrect()
+        public void IsAccumulatorInitialized_AddTwoNumbers_TestIfAccumulatorIsInitialized()
         {
             uut.Add(2, 5);
-            Assert.That(uut.Accumulator, Is.EqualTo(7));
+            Assert.That(uut.IsAccumulatorInitialized, Is.EqualTo(true));
         }
 
-        [Test]
-        public void Add_TwoNegativeNumbers_AccumulatorIsCorrect()
-        {
-            uut.Add(-2, -7);
-            Assert.That(uut.Accumulator, Is.EqualTo(-9));
-        }
         #endregion
 
         #region Clear
