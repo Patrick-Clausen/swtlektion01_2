@@ -167,7 +167,30 @@ namespace Calculator.Unit.Test
         #endregion
 
         #region Overloaded Power Method
+        [TestCase( 2, 1, 4, 16)]
+        [TestCase( 4, 2, 2, 256)]
+        [TestCase( 2, -1, -1, 2)]
+        [TestCase( 152, 256, 0, 1)]
+        public void PowerOverload_TestWithPositiveNegativeAndZeroExponents_ResultIsCorrect(double acc_x, double acc_exp, double exp, double expectedResult)
+        {
+            uut.Power(acc_x, acc_exp);
+            var result = uut.Power(exp);
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
 
+        /*
+        [TestCase]
+        public void PowerOverload_TestWithPositiveNegativeAndZeroExponents_AccumulatorIsCorrect(double a, double b)
+        {
+
+        }
+        */
+
+        [Test]
+        public void PowerOverload_TestWithUninitializedAccumulator_ThrowsException()
+        {
+            Assert.Throws<AccumulatorNotInitializedException>(delegate { uut.Power(45); });
+        }
         #endregion
 
         #region Accumulator
